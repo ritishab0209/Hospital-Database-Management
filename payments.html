@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payment Details - Doctor Admin</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .card-header {
+        background-color: #007bff;
+        color: white;
+      }
+
+      .card-body {
+        font-size: 1rem;
+      }
+
+      .btn-print {
+        margin-right: 10px;
+      }
+
+      .footer {
+        background-color: #f8f9fa;
+        border-top: 1px solid #e9ecef;
+        text-align: center;
+        padding: 10px 0;
+      }
+
+      /* Hide print button for print media */
+      @media print {
+        .btn-print {
+          display: none !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <header
+      class="navbar navbar-expand-md navbar-light bg-lightgreen sticky-top"
+    >
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="images/logo.png" alt="Logo" class="logo" />
+        <span class="navbar-title mx-auto">Global care</span>
+        <div class="ml-auto">
+          <a class="btn btn-outline-dark" href="index.html">Logout</a>
+        </div>
+      </a>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="admin_page.php">
+                  <i class="fas fa-tachometer-alt"></i> Dashboard
+                </a>
+              </li>
+              <!-- Other navigation links as needed -->
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Payment Details</h1>
+          </div>
+
+          <!-- Payment Details Section -->
+          <div class="card">
+            <div class="card-header">
+              <strong>Payment Information</strong>
+            </div>
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h5>Patient Information</h5>
+                  <p><strong>Patient ID:</strong> 123456</p>
+                  <p><strong>Patient Name:</strong> John Doe</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>Service Details</h5>
+                  <p><strong>Service Date:</strong> July 15, 2024</p>
+                  <p><strong>Service Description:</strong> Consultation</p>
+                  <p><strong>Doctor Name:</strong> Dr. Jane Smith</p>
+                </div>
+              </div>
+              <hr />
+              <div class="row mb-3">
+                <div class="col-md-6">
+                  <h5>Billing Information</h5>
+                  <p><strong>Total Amount Due:</strong> $150.00</p>
+                  <p><strong>Payment Status:</strong> Unpaid</p>
+                  <p><strong>Payment Method:</strong> Credit Card</p>
+                </div>
+                <div class="col-md-6">
+                  <h5>Invoice Details</h5>
+                  <p><strong>Invoice Number:</strong> INV-20240715-001</p>
+                  <p><strong>Invoice Date:</strong> July 15, 2024</p>
+                  <p><strong>Due Date:</strong> July 30, 2024</p>
+                </div>
+              </div>
+              <div class="text-center mt-4">
+                <button
+                  class="btn btn-primary btn-print"
+                  onclick="printInvoice()"
+                >
+                  Print Invoice
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Footer section with dynamic content -->
+          <footer class="footer mt-auto">
+            <div class="container">
+              <span class="text-muted">
+                <strong>Global Care Hospital</strong><br />
+                Address: 123 Main St, Bangalore Karnataka, 572131<br />
+                About Us: We provide top-notch healthcare services.<br />
+                Contact Us: contact@globalcare.com
+              </span>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <!-- Required scripts remain the same -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts.js"></script>
+    <script>
+      function printInvoice() {
+        // Implement functionality to print invoice
+        window.print();
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Health Dashboard - Global Care</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      /* Custom styling for the navbar */
+      .navbar {
+        background-color: rgb(135, 243, 135); /* Green color */
+        height: 70px; /* Adjusted height */
+      }
+      .navbar-brand {
+        color: #ffffff; /* White text color */
+      }
+      .navbar-brand img {
+        height: 50px; /* Adjust logo height */
+        margin-right: 10px; /* Space between logo and text */
+      }
+      .navbar-title {
+        color: #ffffff; /* White text color */
+        font-size: 2rem; /* Adjusted font size */
+        margin-left: 10px; /* Left margin */
+      }
+      .navbar .btn-outline-dark {
+        color: #000000; /* Black text color */
+        border-color: #000000; /* Black border color */
+      }
+      .navbar .btn-outline-dark:hover {
+        color: #ffffff; /* White text color on hover */
+        background-color: #000000; /* Black background on hover */
+      }
+
+      /* Styling for cards */
+      .card {
+        border: none;
+      }
+      .card-header {
+        background-color: rgb(135, 243, 135); /* Green color */
+        color: #ffffff; /* White header text color */
+        font-weight: bold; /* Bold header text */
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-light sticky-top">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="images/logo.png" alt="Logo" class="logo" />
+        <span class="navbar-title">Global Care</span>
+      </a>
+      <div class="ml-auto">
+        <a class="btn btn-outline-dark" href="index.html">Logout</a>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-2 d-none d-md-block bg-light sidebar">
+          <div class="sidebar-sticky">
+            <div class="profile-section text-center my-3">
+              <img
+                src="images/patient_avatar.png"
+                alt="Patient Profile"
+                class="rounded-circle"
+                width="50"
+              />
+              <p class="mt-2">patient</p>
+            </div>
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="patient_dashboard.php"
+                  ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Patient Profile</h1>
+            <button class="btn btn-primary" id="editProfileBtn">
+              Edit Profile
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Personal Information</div>
+                <div class="card-body">
+                  <form id="personalInfoForm">
+                    <div class="form-group">
+                      <label for="patientName">Name</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="patientName"
+                        value="Patient_Name"
+                        disabled
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="dob">Date of Birth</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="dob"
+                        value="August 10, 1990"
+                        disabled
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="age">Age</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="age"
+                        value="32"
+                        disabled
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="gender">Gender</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="gender"
+                        value="Male"
+                        disabled
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="address">Address</label>
+                      <textarea
+                        class="form-control"
+                        id="address"
+                        rows="3"
+                        disabled
+                      >
+123 Main St, Bangalore Karnataka, 572131</textarea
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="phone">Phone Number</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="phone"
+                        value="+91 9876543210"
+                        disabled
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="email">Email Address</label>
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="email"
+                        value="patient@example.com"
+                        disabled
+                      />
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Medical Information</div>
+                <div class="card-body">
+                  <form id="medicalInfoForm">
+                    <div class="form-group">
+                      <label for="medicalHistory">Medical History</label>
+                      <textarea
+                        class="form-control"
+                        id="medicalHistory"
+                        rows="5"
+                        disabled
+                      >
+Previous surgeries: None. Known allergies: Penicillin.</textarea
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="currentConditions"
+                        >Current Health Issues</label
+                      >
+                      <textarea
+                        class="form-control"
+                        id="currentConditions"
+                        rows="5"
+                        disabled
+                      >
+Diabetes type 2, Hypertension.</textarea
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="medications">Current Medications</label>
+                      <textarea
+                        class="form-control"
+                        id="medications"
+                        rows="3"
+                        disabled
+                      >
+Metformin 500mg daily, Lisinopril 10mg daily.</textarea
+                      >
+                    </div>
+                    <div class="form-group">
+                      <label for="familyHistory">Family Medical History</label>
+                      <textarea
+                        class="form-control"
+                        id="familyHistory"
+                        rows="3"
+                        disabled
+                      >
+Heart disease: Father, Diabetes: Grandmother.</textarea
+                      >
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer mt-auto py-3 bg-light">
+            <div class="container">
+              <span class="text-muted">
+                <strong style="text-align: center">Global Care Hospital</strong
+                ><br />
+                Address: 123 Main St, Bangalore Karnataka,572131<br />
+                About Us: We provide top-notch healthcare services.<br />
+                Contact Us: contact@globalcare.com
+              </span>
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      // Script to handle edit button click
+      document
+        .getElementById("editProfileBtn")
+        .addEventListener("click", function () {
+          document
+            .getElementById("personalInfoForm")
+            .querySelectorAll("input, textarea")
+            .forEach(function (el) {
+              el.removeAttribute("disabled");
+            });
+          document
+            .getElementById("medicalInfoForm")
+            .querySelectorAll("input, textarea")
+            .forEach(function (el) {
+              el.removeAttribute("disabled");
+            });
+
+          document.getElementById("patientName").focus();
+        });
+    </script>
+  </body>
+</html>

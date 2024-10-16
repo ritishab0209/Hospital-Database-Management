@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Department Management - Global Care</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .navbar {
+        background-color: rgb(135, 243, 135);
+        height: 70px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand {
+        color: #ffffff;
+      }
+      .navbar-title {
+        color: #ffffff;
+        font-size: 2rem;
+        margin-left: 10px;
+      }
+      .sidebar {
+        background-color: #f8f9fa;
+        height: 100vh;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .nav-link {
+        color: #495057;
+      }
+      .nav-link:hover {
+        color: #007bff;
+      }
+      .nav-link.active {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        background-color: #007bff;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      footer {
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-light sticky-top">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img
+          style="width: 50px; height: 50px"
+          src="images/logo.png"
+          alt="Logo"
+          class="logo"
+        />
+        <span class="navbar-title">Global Care</span>
+      </a>
+      <div class="ml-auto">
+        <a class="btn btn-outline-dark" href="#">Logout</a>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-avatar">
+            <img
+              style="width: 100px; height: 100px"
+              src="images/admin-profile.png"
+              alt="Admin Avatar"
+            />
+            <h6>Mr. Admin</h6>
+          </div>
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="admin_page.php"
+                  ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="doctor.html"
+                  ><i class="fas fa-user-md"></i> Doctor</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="patient.html"
+                  ><i class="fas fa-user-friends"></i> Patient</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="department.html"
+                  ><i class="fas fa-building"></i> Department</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i> Schedule</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="appointment.html"
+                  ><i class="fas fa-calendar-check"></i> Appointment</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="payment.html"
+                  ><i class="fas fa-credit-card"></i> Payment</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="report.html"
+                  ><i class="fas fa-chart-line"></i> Report</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="bed_manager.html"
+                  ><i class="fas fa-bed"></i> Bed Manager</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Department Management</h1>
+            <button class="btn btn-primary" id="addDepartment">
+              Add Department
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-3">
+                <div class="card-header">Department List</div>
+                <div class="card-body">
+                  <table class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Department Name</th>
+                        <th>Head</th>
+                        <th>Number of Doctors</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>Cardiology</td>
+                        <td>Dr. John Doe</td>
+                        <td>10</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td>2</td>
+                        <td>Pediatrics</td>
+                        <td>Dr. Johnson</td>
+                        <td>8</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td>3</td>
+                        <td>Dermatology</td>
+                        <td>Dr. Williams</td>
+                        <td>6</td>
+                        <td>
+                          <span class="badge badge-danger">Inactive</span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>4</td>
+                        <td>General Medicine</td>
+                        <td>Dr. Brown</td>
+                        <td>15</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                      </tr>
+                      <tr>
+                        <td>5</td>
+                        <td>Neurology</td>
+                        <td>Dr. Smith</td>
+                        <td>5</td>
+                        <td><span class="badge badge-success">Active</span></td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer mt-auto py-3">
+            <div class="container text-muted">
+              <strong>Global Care Hospital</strong><br />
+              Address: 123 Main St, Bangalore, Karnataka, 572131<br />
+              About Us: We provide top-notch healthcare services.<br />
+              Contact Us: contact@globalcare.com
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

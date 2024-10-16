@@ -1,0 +1,77 @@
+body {
+    font-size: .875rem;
+}
+
+.navbar-light .navbar-brand {
+    font-weight: bold;
+}
+
+.navbar-title {
+    font-size: 2rem; /* Increased title size */
+    margin-left: 10px; /* Added margin to separate from icon */
+}
+
+.bg-lightgreen {
+    background-color: rgb(135, 243, 135);
+    height: 70px; /* Adjusted height */
+    display: flex;
+    align-items: center;
+    justify-content: space-between; /* Space between elements */
+    padding: 0 20px; /* Add some padding */
+}
+
+.logo {
+    width: 50px;
+    height: auto;
+}
+
+.sidebar-sticky {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    height: calc(100vh - 70px); /* Adjust height to account for the increased navbar height */
+    padding-top: .5rem;
+    overflow-x: hidden;
+    overflow-y: auto; 
+}
+
+.sidebar .nav-link {
+    font-weight: 500;
+    color: #333;
+}
+
+.sidebar .nav-link:hover {
+    color: #007bff;
+}
+
+.profile-section img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+
+.profile-section p {
+    font-weight: bold;
+    margin: 10px 0 0;
+}
+
+.card {
+    border: none;
+}
+
+.card-title {
+    font-size: 1.25rem;
+}
+
+.card-body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.footer {
+    background-color: #f8f9fa;
+    text-align: center;
+    padding: 10px 0;
+}

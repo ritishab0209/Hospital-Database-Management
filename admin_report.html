@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Report - Global Care</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .navbar {
+        background-color: rgb(135, 243, 135);
+        height: 70px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand {
+        color: #ffffff;
+      }
+      .navbar-title {
+        color: #ffffff;
+        font-size: 2rem;
+        margin-left: 10px;
+      }
+      .sidebar {
+        background-color: #f8f9fa;
+        height: 100vh;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .nav-link {
+        color: #495057;
+      }
+      .nav-link:hover {
+        color: #007bff;
+      }
+      .nav-link.active {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        background-color: #007bff;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      footer {
+        margin-top: 20px;
+      }
+      .chart-container {
+        position: relative;
+        margin: auto;
+        height: 40vh;
+        width: 80vw;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-light sticky-top">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img
+          style="width: 50px; height: 50px"
+          src="images/logo.png"
+          alt="Logo"
+          class="logo"
+        />
+        <span class="navbar-title">Global Care</span>
+      </a>
+      <div class="ml-auto">
+        <a class="btn btn-outline-dark" href="index.html">Logout</a>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-avatar">
+            <img
+              style="width: 100px; height: 100px"
+              src="images/admin-profile.png"
+              alt="Admin Avatar"
+            />
+            <h6>Mr. Admin</h6>
+          </div>
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link active" href="admin_page.php"
+                  ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="doctor.html"
+                  ><i class="fas fa-user-md"></i> Doctor</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="patient.html"
+                  ><i class="fas fa-user-friends"></i> Patient</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="admin_department.html"
+                  ><i class="fas fa-building"></i> Department</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="schedule.html"
+                  ><i class="fas fa-calendar-alt"></i> Schedule</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="appointment.html"
+                  ><i class="fas fa-calendar-check"></i> Appointment</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="payment.html"
+                  ><i class="fas fa-credit-card"></i> Payment</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="admin_report.html"
+                  ><i class="fas fa-chart-line"></i> Report</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="bed_manager.html"
+                  ><i class="fas fa-bed"></i> Bed Manager</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Admin Report</h1>
+            <button class="btn btn-primary" id="downloadReport">
+              Download Report
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Monthly Revenue</div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="monthlyRevenueChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Patient Demographics</div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="patientsDemographicsChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Doctor Specialties</div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="doctorsChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Appointment Statistics</div>
+                <div class="card-body">
+                  <div class="chart-container">
+                    <canvas id="appointmentStatsChart"></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer mt-auto py-3">
+            <div class="container text-muted">
+              <strong>Global Care Hospital</strong><br />
+              Address: 123 Main St, Bangalore, Karnataka, 572131<br />
+              About Us: We provide top-notch healthcare services.<br />
+              Contact Us: contact@globalcare.com
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+    <script>
+      const monthlyRevenueChartCtx = document
+        .getElementById("monthlyRevenueChart")
+        .getContext("2d");
+      const patientsDemographicsChartCtx = document
+        .getElementById("patientsDemographicsChart")
+        .getContext("2d");
+      const doctorsChartCtx = document
+        .getElementById("doctorsChart")
+        .getContext("2d");
+      const appointmentStatsChartCtx = document
+        .getElementById("appointmentStatsChart")
+        .getContext("2d");
+
+      const monthlyRevenueChart = new Chart(monthlyRevenueChartCtx, {
+        type: "line",
+        data: {
+          labels: ["January", "February", "March", "April", "May"],
+          datasets: [
+            {
+              label: "Monthly Revenue (in USD)",
+              data: [3000, 4000, 3500, 5000, 6000],
+              fill: false,
+              borderColor: "#742774",
+              tension: 0.1,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const patientsDemographicsChart = new Chart(
+        patientsDemographicsChartCtx,
+        {
+          type: "pie",
+          data: {
+            labels: ["Adults", "Children", "Seniors"],
+            datasets: [
+              {
+                data: [70, 20, 10],
+                backgroundColor: ["#36A2EB", "#FF6384", "#FFCE56"],
+                hoverOffset: 4,
+              },
+            ],
+          },
+          options: {},
+        }
+      );
+
+      const doctorsChart = new Chart(doctorsChartCtx, {
+        type: "bar",
+        data: {
+          labels: [
+            "Cardiologists",
+            "Pediatricians",
+            "Dermatologists",
+            "General Practitioners",
+          ],
+          datasets: [
+            {
+              label: "# of Doctors",
+              data: [25, 15, 20, 40],
+              backgroundColor: "#FFCE56",
+            },
+          ],
+        },
+        options: {},
+      });
+
+      const appointmentStatsChart = new Chart(appointmentStatsChartCtx, {
+        type: "bar",
+        data: {
+          labels: ["Scheduled", "Completed", "Cancelled"],
+          datasets: [
+            {
+              label: "# of Appointments",
+              data: [150, 120, 30],
+              backgroundColor: ["#4BC0C0", "#FF6384", "#FFCE56"],
+            },
+          ],
+        },
+        options: {},
+      });
+
+      document
+        .getElementById("downloadReport")
+        .addEventListener("click", function () {
+          const { jsPDF } = window.jspdf;
+          const doc = new jsPDF();
+          doc.text("Admin Report", 20, 20);
+          doc.save("admin_report.pdf");
+        });
+    </script>
+  </body>
+</html>

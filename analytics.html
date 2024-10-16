@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics & Reports - Global Care</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .navbar {
+        background-color: rgb(135, 243, 135);
+        height: 70px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand {
+        color: #ffffff;
+      }
+      .navbar-title {
+        color: #ffffff;
+        font-size: 2rem;
+        margin-left: 10px;
+      }
+      .sidebar {
+        background-color: #f8f9fa;
+        height: 100vh;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .nav-link {
+        color: #495057;
+      }
+      .nav-link:hover {
+        color: #007bff;
+      }
+      .nav-link.active {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        background-color: #007bff;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      footer {
+        margin-top: 20px;
+      }
+      .sidebar-avatar {
+        text-align: center;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-light sticky-top">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img
+          style="width: 50px; height: 50px"
+          src="images/logo.png"
+          alt="Logo"
+          class="logo"
+        />
+        <span class="navbar-title">Global Care</span>
+      </a>
+      <div class="ml-auto">
+        <a class="btn btn-outline-dark" href="index.html">Logout</a>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-avatar">
+            <img
+              style="width: 100px; height: 100px"
+              src="images/doctor_avatar.jpg"
+              alt="Doctor Avatar"
+            />
+            <h6>Dr. John Doe</h6>
+          </div>
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="doctor_dashboard.php"
+                  ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html"
+                  ><i class="fas fa-user"></i> Profile</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="doctor_appointments.html"
+                  ><i class="fas fa-calendar-alt"></i> Appointments</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="patients.html"
+                  ><i class="fas fa-user-friends"></i> Patients</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="payments.html"
+                  ><i class="fas fa-credit-card"></i> Payments</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="analytics.html"
+                  ><i class="fas fa-chart-line"></i> Analytics & Reports</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="notifications.html"
+                  ><i class="fas fa-bell"></i> Notifications</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Analytics & Reports</h1>
+            <button class="btn btn-primary" onclick="generateReport()">
+              Generate Report
+            </button>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Monthly Revenue</div>
+                <div class="card-body">
+                  <canvas id="revenueChart"></canvas>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Patient Count</div>
+                <div class="card-body">
+                  <canvas id="patientCountChart"></canvas>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-3">
+                <div class="card-header">Recent Activity</div>
+                <div class="card-body">
+                  <ul id="recent-activity" class="list-group">
+                    <li class="list-group-item">
+                      John Smith checked in for treatment.
+                    </li>
+                    <li class="list-group-item">
+                      Emily Johnson made a payment of $150.
+                    </li>
+                    <li class="list-group-item">
+                      Michael Brown scheduled a new appointment.
+                    </li>
+                    <li class="list-group-item">
+                      Sarah Davis updated her profile.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer mt-auto py-3">
+            <div class="container text-muted">
+              <strong>Global Care Hospital</strong><br />
+              Address: 123 Main St, Bangalore, Karnataka, 572131<br />
+              About Us: We provide top-notch healthcare services.<br />
+              Contact Us: contact@globalcare.com
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script>
+      const ctxRevenue = document
+        .getElementById("revenueChart")
+        .getContext("2d");
+      const revenueChart = new Chart(ctxRevenue, {
+        type: "line",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Revenue ($)",
+              data: [1200, 1900, 3000, 2500, 3200, 4000],
+              borderColor: "rgba(75, 192, 192, 1)",
+              backgroundColor: "rgba(75, 192, 192, 0.2)",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      const ctxPatientCount = document
+        .getElementById("patientCountChart")
+        .getContext("2d");
+      const patientCountChart = new Chart(ctxPatientCount, {
+        type: "bar",
+        data: {
+          labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+          datasets: [
+            {
+              label: "Patient Count",
+              data: [50, 70, 90, 85, 100, 120],
+              backgroundColor: "rgba(153, 102, 255, 0.2)",
+              borderColor: "rgba(153, 102, 255, 1)",
+              borderWidth: 2,
+            },
+          ],
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true,
+            },
+          },
+        },
+      });
+
+      function generateReport() {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF();
+
+        doc.setFontSize(20);
+        doc.text("Global Care Hospital", 14, 20);
+        doc.setFontSize(12);
+        doc.text("Address: 123 Main St, Bangalore, Karnataka, 572131", 14, 30);
+        doc.text("Analytics & Reports", 14, 40);
+
+        // Add Monthly Revenue Chart
+        doc.addImage(revenueChart.toBase64Image(), "PNG", 14, 50, 180, 90);
+        doc.text("Monthly Revenue Chart", 14, 140);
+
+        // Add Patient Count Chart
+        doc.addImage(
+          patientCountChart.toBase64Image(),
+          "PNG",
+          14,
+          150,
+          180,
+          90
+        );
+        doc.text("Patient Count Chart", 14, 240);
+
+        // Recent Activity
+        doc.text("Recent Activity:", 14, 260);
+        const activities = [
+          "John Smith checked in for treatment.",
+          "Emily Johnson made a payment of $150.",
+          "Michael Brown scheduled a new appointment.",
+          "Sarah Davis updated her profile.",
+        ];
+        activities.forEach((activity, index) => {
+          doc.text(activity, 14, 270 + index * 10);
+        });
+
+        doc.save("analytics_report.pdf");
+      }
+    </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointments - Global Care</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .navbar {
+        background-color: rgb(135, 243, 135);
+        height: 70px;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .navbar-brand {
+        color: #ffffff;
+      }
+      .navbar-brand img {
+        height: 50px;
+        margin-right: 10px;
+      }
+      .navbar-title {
+        color: #ffffff;
+        font-size: 2rem;
+        margin-left: 10px;
+      }
+      .sidebar {
+        background-color: #f8f9fa;
+        height: 100vh;
+        border-right: 1px solid rgba(0, 0, 0, 0.1);
+      }
+      .nav-link {
+        color: #495057;
+      }
+      .nav-link:hover {
+        color: #007bff;
+      }
+      .nav-link.active {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .card {
+        border: none;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .card-header {
+        background-color: #007bff;
+        color: #ffffff;
+        font-weight: bold;
+      }
+      footer {
+        margin-top: 20px;
+      }
+      .doctor-info {
+        display: flex;
+        align-items: center;
+        margin: 20px;
+        text-align: center;
+      }
+      .doctor-info img {
+        border-radius: 50%;
+        height: 50px;
+        width: 50px;
+        margin-right: 10px;
+      }
+      .sidebar-avatar {
+        text-align: center;
+        margin: 20px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-md navbar-light sticky-top">
+      <a class="navbar-brand d-flex align-items-center" href="#">
+        <img src="images/logo.png" alt="Logo" class="logo" />
+        <span class="navbar-title">Global Care</span>
+      </a>
+      <div class="ml-auto">
+        <a class="btn btn-outline-dark" href="index.html">Logout</a>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row">
+        <nav id="sidebar" class="col-md-2 d-none d-md-block sidebar">
+          <div class="sidebar-avatar">
+            <img
+              style="width: 100px; height: 100px"
+              src="images/doctor_avatar.jpg"
+              alt="Doctor Avatar"
+            />
+            <h6>Dr. John Doe</h6>
+          </div>
+          <div class="sidebar-sticky">
+            <ul class="nav flex-column">
+              <li class="nav-item">
+                <a class="nav-link" href="doctor_dashboard.php"
+                  ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="profile.html"
+                  ><i class="fas fa-user"></i> Profile</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link active" href="doctor_appointments.html"
+                  ><i class="fas fa-calendar-alt"></i> Appointments</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="patients.html"
+                  ><i class="fas fa-user-friends"></i> Patients</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="payments.html"
+                  ><i class="fas fa-credit-card"></i> Payments</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="analytics.html"
+                  ><i class="fas fa-chart-line"></i> Analytics & Reports</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="notifications.html"
+                  ><i class="fas fa-bell"></i> Notifications</a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <main role="main" class="col-md-10 ml-sm-auto px-md-4">
+          <div
+            class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+          >
+            <h1 class="h2">Appointments</h1>
+          </div>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="card mb-3">
+                <div class="card-header">Appointment Requests</div>
+                <div class="card-body">
+                  <ul id="appointment-requests" class="list-group">
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      PatientA -
+                      <div>
+                        <button
+                          class="btn btn-success btn-sm"
+                          onclick="acceptAppointment('PatientA')"
+                        >
+                          Accept
+                        </button>
+                        <button
+                          class="btn btn-danger btn-sm"
+                          onclick="rejectAppointment('PatientA')"
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      PatientB -
+                      <div>
+                        <button
+                          class="btn btn-success btn-sm"
+                          onclick="acceptAppointment('PatientB')"
+                        >
+                          Accept
+                        </button>
+                        <button
+                          class="btn btn-danger btn-sm"
+                          onclick="rejectAppointment('PatientB')"
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      PatientC -
+                      <div>
+                        <button
+                          class="btn btn-success btn-sm"
+                          onclick="acceptAppointment('PatientC')"
+                        >
+                          Accept
+                        </button>
+                        <button
+                          class="btn btn-danger btn-sm"
+                          onclick="rejectAppointment('PatientC')"
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </li>
+                    <li
+                      class="list-group-item d-flex justify-content-between align-items-center"
+                    >
+                      patient123 -
+                      <div>
+                        <button
+                          class="btn btn-success btn-sm"
+                          onclick="acceptAppointment('patient123')"
+                        >
+                          Accept
+                        </button>
+                        <button
+                          class="btn btn-danger btn-sm"
+                          onclick="rejectAppointment('patient123')"
+                        >
+                          Decline
+                        </button>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Accepted Appointments</div>
+                <div class="card-body">
+                  <table id="accepted-appointments" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Patient Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Accepted appointments will go here -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="card mb-3">
+                <div class="card-header">Rejected Appointments</div>
+                <div class="card-body">
+                  <table id="rejected-appointments" class="table table-striped">
+                    <thead>
+                      <tr>
+                        <th>Patient Name</th>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Status</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <!-- Rejected appointments will go here -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <footer class="footer mt-auto py-3">
+            <div class="container text-muted">
+              <strong>Global Care Hospital</strong><br />
+              Address: 123 Main St, Bangalore, Karnataka, 572131<br />
+              About Us: We provide top-notch healthcare services.<br />
+              Contact Us: contact@globalcare.com
+            </div>
+          </footer>
+        </main>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+      const appointmentDetails = {
+        PatientA: { date: "August 10, 2024", time: "10:00 AM" },
+        PatientB: { date: "August 11, 2024", time: "11:00 AM" },
+        PatientC: { date: "August 12, 2024", time: "1:00 PM" },
+        patient123: { date: "August 13, 2024", time: "2:30 PM" },
+      };
+
+      function acceptAppointment(patient) {
+        const requestList = document.getElementById("appointment-requests");
+        const acceptedTable = document
+          .getElementById("accepted-appointments")
+          .getElementsByTagName("tbody")[0];
+
+        // Move from requests to accepted
+        for (let item of requestList.children) {
+          if (item.innerText.includes(patient)) {
+            const row = acceptedTable.insertRow();
+            row.innerHTML = `<td>${patient}</td><td>${appointmentDetails[patient].date}</td><td>${appointmentDetails[patient].time}</td><td>Confirmed</td>`;
+            requestList.removeChild(item);
+            break;
+          }
+        }
+      }
+
+      function rejectAppointment(patient) {
+        const requestList = document.getElementById("appointment-requests");
+        const rejectedTable = document
+          .getElementById("rejected-appointments")
+          .getElementsByTagName("tbody")[0];
+
+        // Move from requests to rejected
+        for (let item of requestList.children) {
+          if (item.innerText.includes(patient)) {
+            const row = rejectedTable.insertRow();
+            row.innerHTML = `<td>${patient}</td><td>--</td><td>--</td><td>Rejected</td>`;
+            requestList.removeChild(item);
+            break;
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
